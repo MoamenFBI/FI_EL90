@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>All Products - FIEL90 Store</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  </head>
+  <body>
+    <div class="container">
+      <div class="navbar">
+        <div class="logo">
+          <a href="index.html"
+            ><img
+              src="./RedStore_Img/images/Logo-FIEL90-COPY.png"
+              width="125px"
+          /></a>
+        </div>
+        <nav>
+          <ul id="MenuItems">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="index.html">About</a></li>
+            <li><a href="index.html">Contact</a></li>
+            <li><a href="account.html">Account</a></li>
+          </ul>
+        </nav>
+        <a href="cart.html" class="cart-icon"
+          ><img
+            src="./RedStore_Img/images/cart.png"
+            width="30px"
+            height="30px"
+          /><span class="cart-count">0</span></a
+        >
+        <img
+          src="./RedStore_Img/images/menu.png"
+          class="menu-icon"
+          onclick="menutoggle()"
+        />
+      </div>
+    </div>
+    <div class="small-container">
+      <div class="row row-2">
+        <h2>All Products</h2>
+        <select>
+          <option>Default Sorting</option>
+          <option>Sort by Price</option>
+          <option>Sort by Popularity</option>
+          <option>Sort by Rating</option>
+          <option>Sort by Sale</option>
+        </select>
+      </div>
+      <div class="row">
+        <!-- Product 1 -->
+        <div class="col-4">
+          <img src="./RedStore_Img/images/product_1 copy.jpg" />
+          <h4>Red Printed T-Shirt</h4>
+          <div class="rating">
+            <p>&#11088;&#11088;&#11088;&#11088;</p>
+          </div>
+          <p class="price">EGP.50</p>
+          <button class="add-to-cart">Add to Cart</button>
+        </div>
+        <!-- Product 2 -->
+        <div class="col-4">
+          <img src="./RedStore_Img/images/product_2.jpeg"  />
+          <h4>Stars-shoes</h4>
+          <div class="rating">
+            <p>&#11088;&#11088;&#11088;&#11088;</p>
+          </div>
+          <p class="price">EGP.50</p>
+          <button class="add-to-cart">Add to Cart</button>
+        </div>
+         <!-- Product 3 -->
+         <div class="col-4">
+            <img src="./RedStore_Img/images/BRAZIEL_1.jpeg" />
+            <h4>Brazil Jacket</h4>
+            <div class="rating">
+              <p>&#11088;&#11088;&#11088;&#11088;</p>
+            </div>
+            <p class="price">EGP.50</p>
+            <button class="add-to-cart">Add to Cart</button>
+          </div>
+           <!-- Product 4 -->
+        <div class="col-4">
+            <img src="./RedStore_Img/images/product_3.jpeg" />
+            <h4>Black shorts</h4>
+            <div class="rating">
+              <p>&#11088;&#11088;&#11088;&#11088;</p>
+            </div>
+            <p class="price">EGP.50</p>
+            <button class="add-to-cart">Add to Cart</button>
+          </div>
+           <!-- Product 5 -->
+        <div class="col-4">
+            <img src="RedStore_Img/images/bady_1-removebg-preview.png" />
+            <h4>Training T-shirt</h4>
+            <div class="rating">
+              <p>&#11088;&#11088;&#11088;&#11088;</p>
+            </div>
+            <p class="price">EGP.90</p>
+            <button class="add-to-cart">Add to Cart</button>
+          </div>
+           <!-- Product 6 -->
+        <div class="col-4">
+            <img src="RedStore_Img/images/aswer1-removebg-preview.png" />
+            <h4>Sports accessories</h4>
+            <div class="rating">
+              <p>&#11088;&#11088;&#11088;&#11088;</p>
+            </div>
+            <p class="price">EGP.45</p>
+            <button class="add-to-cart">Add to Cart</button>
+          </div>
+           <!-- Product 7 -->
+        <div class="col-4">
+            <img src="RedStore_Img/images/boll_1-removebg-preview.png" />
+            <h4>Football Ball</h4>
+            <div class="rating">
+              <p>&#11088;&#11088;&#11088;&#11088;</p>
+            </div>
+            <p class="price">EGP.120</p>
+            <button class="add-to-cart">Add to Cart</button>
+          </div>
+           <!-- Product 8 -->
+        <div class="col-4">
+            <img src="RedStore_Img/images/glevs_1-removebg-preview.png" />  
+            <h4>Gloves</h4>
+            <div class="rating">
+              <p>&#11088;&#11088;&#11088;&#11088;</p>
+            </div>
+            <p class="price">EGP.50</p>
+            <button class="add-to-cart">Add to Cart</button>
+          </div>
+           <!-- Product 9 -->
+        <div class="col-4">
+            <img src="RedStore_Img/images/teshert_1_copy-removebg-preview.png" />  
+            <h4>Blue Printed T-Shirt</h4>
+            <div class="rating">
+              <p>&#11088;&#11088;&#11088;&#11088;</p>
+            </div>
+            <p class="price">EGP.80</p>
+            <button class="add-to-cart">Add to Cart</button>
+          </div>
+
+        <!-- Add more products here -->
+      </div>
+    </div>
+<!-- footer -->
+<div class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="footer-col-1">
+                <h3>Download Our App</h3>
+                <p>Download App for Android and ios mobile phone.</p>
+                <div class="app-logo">
+                    <img src="./RedStore_Img/images/play-store.png">
+                    <img src="./RedStore_Img/images/app-store.png">
+                
+                </div>
+            </div>
+            <div class="footer-col-2">
+                <img src="./RedStore_Img/images/Logo-FIEL90-2.png">
+                <p>Our Purpose Is To Sustainably Make the Pleasure and Benefits of Sports Accessible to the Many.</p>
+
+            </div>
+            <div class="footer-col-3">
+                <h3>Useful Links</h3>
+                <ul>
+                    <li>Coupons</li>
+                    <li>Blog Post</li>
+                    <li>Return Policy</li>
+                    <li>Join Affiliate</li>
+        </div>
+        <div class="footer-col-4">
+            <h3>Follow Us</h3>
+            <ul>
+                <li>Facebook</li>
+                <li>Twitter</li>
+                <li>Instagram</li>
+                <li>Youtube</li>
+        </div>
+    </div>
+    <hr>
+    <p class="copyright">Copyright 2020 - RedStore</p>
+</div>
+    <script>
+      var MenuItems = document.getElementById("MenuItems");
+
+      MenuItems.style.maxHeight = "0px";
+
+      function menutoggle() {
+        if (MenuItems.style.maxHeight == "0px") {
+          MenuItems.style.maxHeight = "200px";
+        } else {
+          MenuItems.style.maxHeight = "0px";
+        }
+      }
+      // JavaScript code for Products Page
+      document.addEventListener("DOMContentLoaded", function () {
+        // Add event listener to "Add to Cart" buttons
+        const addToCartButtons = document.querySelectorAll(".add-to-cart");
+        addToCartButtons.forEach((button) => {
+          button.addEventListener("click", function () {
+            // Get product details
+            const product = button.parentElement;
+            const productName = product.querySelector("h4").textContent;
+            const productPrice = parseFloat(
+              product.querySelector(".price").textContent.replace("EGP.", "")
+            );
+
+            // Add product to cart (you can use localStorage or a server-side solution)
+            addToCart(productName, productPrice);
+
+            // Update cart icon
+            updateCartIcon();
+          });
+        });
+
+        // Function to add product to cart
+        function addToCart(name, price) {
+          // Add product to localStorage or server-side cart
+          // This implementation assumes the use of localStorage
+          let cartItems = localStorage.getItem("cartItems");
+          if (!cartItems) {
+            cartItems = [];
+          } else {
+            cartItems = JSON.parse(cartItems);
+          }
+          // Check if product already exists in cart
+          const existingProductIndex = cartItems.findIndex(
+            (item) => item.name === name
+          );
+          if (existingProductIndex !== -1) {
+            // If product exists, increase quantity
+            cartItems[existingProductIndex].quantity++;
+          } else {
+            // If product does not exist, add it to cart
+            cartItems.push({ name, price, quantity: 1 });
+          }
+          localStorage.setItem("cartItems", JSON.stringify(cartItems));
+        }
+
+        // Function to update cart icon with total items count
+        function updateCartIcon() {
+          const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+          const cartCount = cartItems.reduce(
+            (total, item) => total + item.quantity,
+            0
+          );
+          document.querySelector(".cart-count").textContent = cartCount;
+        }
+      });
+    </script>
+  </body>
+</html>

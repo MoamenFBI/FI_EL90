@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Payment - FIEL90 Store</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <div class="container">
+        <div class="navbar">
+            <div class="logo">
+                <a href="index.html"><img src="./RedStore_Img/images/Logo-FIEL90-COPY.png" width="125px" /></a>
+            </div>
+            <nav>
+                <ul id="MenuItems">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="index.html">About</a></li>
+                    <li><a href="index.html">Contact</a></li>
+                    <li><a href="account.html">Account</a></li>
+                </ul>
+            </nav>
+            <a href="cart.html" class="cart-icon"><img src="./RedStore_Img/images/cart.png" width="30px" height="30px" /><span class="cart-count">0</span></a>
+            <img src="./RedStore_Img/images/menu.png" class="menu-icon" onclick="menutoggle()" />
+        </div>
+    </div>
+    <div class="small-contain">
+        <h2>Payment Information</h2>
+        <div id="payment-amount-summary">
+            <h3>Total Amount to Pay: <span id="total-amount">$0.00</span></h3>
+        </div>
+        <form id="payment-form">
+            <div class="form-group">
+                <label for="card-name">Name on Card</label>
+                <input type="text" id="card-name" required />
+            </div>
+            <div class="form-group">
+                <label for="card-number">Card Number</label>
+                <input type="text" id="card-number" required />
+            </div>
+            <div class="form-group">
+                <label for="card-expiry">Expiry Date</label>
+                <input type="text" id="card-expiry" placeholder="MM/YY" required />
+            </div>
+            <div class="form-group">
+                <label for="card-cvc">CVC</label>
+                <input type="text" id="card-cvc" required />
+            </div>
+            <button type="submit" class="sc-btn">Submit Payment</button>
+        </form>
+    </div>
+    <!-- footer -->
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="footer-col-1">
+                    <h3>Download Our App</h3>
+                    <p>Download App for Android and ios mobile phone.</p>
+                    <div class="app-logo">
+                        <img src="./RedStore_Img/images/play-store.png">
+                        <img src="./RedStore_Img/images/app-store.png">
+                    </div>
+                </div>
+                <div class="footer-col-2">
+                    <img src="./RedStore_Img/images/Logo-FIEL90-2.png">
+                    <p>Our Purpose Is To Sustainably Make the Pleasure and Benefits of Sports Accessible to the Many.</p>
+                </div>
+                <div class="footer-col-3">
+                    <h3>Useful Links</h3>
+                    <ul>
+                        <li>Coupons</li>
+                        <li>Blog Post</li>
+                        <li>Return Policy</li>
+                        <li>Join Affiliate</li>
+                </div>
+                <div class="footer-col-4">
+                    <h3>Follow Us</h3>
+                    <ul>
+                        <li>Facebook</li>
+                        <li>Twitter</li>
+                        <li>Instagram</li>
+                        <li>Youtube</li>
+                </div>
+            </div>
+            <hr>
+            <p class="copyright">Copyright 2020 - RedStore</p>
+        </div>
+    </div>
+    <script>
+    var MenuItems = document.getElementById("MenuItems");
+
+    MenuItems.style.maxHeight = "0px";
+
+function menutoggle() {
+  if (MenuItems.style.maxHeight == "0px") {
+    MenuItems.style.maxHeight = "200px";
+  } else {
+    MenuItems.style.maxHeight = "0px";
+  }
+}
+
+        document.addEventListener("DOMContentLoaded", function() {
+            loadTotalAmount();
+
+            const paymentForm = document.getElementById("payment-form");
+            paymentForm.addEventListener("submit", function(event) {
+                event.preventDefault();
+                // Validate form inputs
+                const cardName = document.getElementById("card-name").value;
+                const cardNumber = document.getElementById("card-number").value;
+                const cardExpiry = document.getElementById("card-expiry").value;
+                const cardCVC = document.getElementById("card-cvc").value;
+
+                if (validatePaymentForm(cardName, cardNumber, cardExpiry, cardCVC)) {
+                    // Redirect to Success page
+                    window.location.href = "success.html";
+                } else {
+                    // Redirect to Cancel page
+                    window.location.href = "cancel.html";
+                }
+            });
+
+            function loadTotalAmount() {
+                const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+                const subtotal = cartItems.reduce(
+                    (total, item) => total + item.price * item.quantity,
+                    0
+                );
+                const tax = subtotal * 0.1; // Assuming 10% tax rate
+                const total = subtotal + tax;
+                document.getElementById("total-amount").textContent = `$${total.toFixed(2)}`;
+            }
+
+            function validatePaymentForm(name, number, expiry, cvc) {
+                // Basic validation logic (you can improve this with more robust validation)
+                const nameValid = name.trim() !== "";
+                const numberValid = /^\d{16}$/.test(number); // Simple check for 16 digits
+                const expiryValid = /^\d{2}\/\d{2}$/.test(expiry); // Simple check for MM/YY format
+                const cvcValid = /^\d{3,4}$/.test(cvc); // Simple check for 3 or 4 digits
+
+                return nameValid && numberValid && expiryValid && cvcValid;
+            }
+        });
+    </script>
+</body>
+</html>

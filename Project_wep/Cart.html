@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shopping Cart - FIEL90 Store</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  </head>
+  <body>
+    <div class="container">
+      <div class="navbar">
+        <div class="logo">
+          <a href="index.html"
+            ><img
+              src="./RedStore_Img/images/Logo-FIEL90-COPY.png"
+              width="125px"
+          /></a>
+        </div>
+        <nav>
+          <ul id="MenuItems">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="index.html">About</a></li>
+            <li><a href="index.html">Contact</a></li>
+            <li><a href="account.html">Account</a></li>
+          </ul>
+        </nav>
+        <a href="cart.html" class="cart-icon"
+          ><img
+            src="./RedStore_Img/images/cart.png"
+            width="30px"
+            height="30px"
+          /><span class="cart-count">0</span></a
+        >
+        <img
+          src="./RedStore_Img/images/menu.png"
+          class="menu-icon"
+          onclick="menutoggle()"
+        />
+      </div>
+    </div>
+    <div class="small-container cart-page">
+      <table>
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Subtotal</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="cart-items">
+          <!-- Cart items will be dynamically added here -->
+        </tbody>
+      </table>
+   <!-- Add the Payment button in the total-price section -->
+    <div class="total-price">
+      <table>
+        <tr>
+          <td>Subtotal</td>
+          <td class="subtotal">$0.00</td>
+        </tr>
+        <tr>
+          <td>Tax</td>
+          <td class="tax">$0.00</td>
+        </tr>
+       <tr>
+         <td>Total</td>
+          <td class="total">$0.00</td>
+       </tr>
+      </table>
+      <button id="payment-button"  style="display: none;" onclick="goToPaymentPage()">Proceed to Payment</button>
+    </div>
+</div>
+    <!-- footer -->
+<div class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="footer-col-1">
+                <h3>Download Our App</h3>
+                <p>Download App for Android and ios mobile phone.</p>
+                <div class="app-logo">
+                    <img src="./RedStore_Img/images/play-store.png">
+                    <img src="./RedStore_Img/images/app-store.png">
+                
+                </div>
+            </div>
+            <div class="footer-col-2">
+                <img src="./RedStore_Img/images/Logo-FIEL90-2.png">
+                <p>Our Purpose Is To Sustainably Make the Pleasure and Benefits of Sports Accessible to the Many.</p>
+
+            </div>
+            <div class="footer-col-3">
+                <h3>Useful Links</h3>
+                <ul>
+                    <li>Coupons</li>
+                    <li>Blog Post</li>
+                    <li>Return Policy</li>
+                    <li>Join Affiliate</li>
+        </div>
+        <div class="footer-col-4">
+            <h3>Follow Us</h3>
+            <ul>
+                <li>Facebook</li>
+                <li>Twitter</li>
+                <li>Instagram</li>
+                <li>Youtube</li>
+        </div>
+    </div>
+    <hr>
+    <p class="copyright">Copyright 2020 - RedStore</p>
+</div>
+    <script>
+      var MenuItems = document.getElementById("MenuItems");
+
+      MenuItems.style.maxHeight = "0px";
+
+      function menutoggle() {
+        if (MenuItems.style.maxHeight == "0px") {
+          MenuItems.style.maxHeight = "200px";
+        } else {
+          MenuItems.style.maxHeight = "0px";
+        }
+      }
+      // JavaScript code for Cart Page
+      document.addEventListener("DOMContentLoaded", function () {
+    loadCartItems();
+    updateCartIcon();
+
+    // Function to load cart items
+    function loadCartItems() {
+        const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+        const cartTableBody = document.getElementById("cart-items");
+        cartTableBody.innerHTML = ""; // Clear previous items
+
+        // Loop through each item in cart
+        cartItems.forEach((item) => {
+            const subtotal = item.price * item.quantity;
+            const row = `
+                <tr>
+                    <td>
+                        <div class="cart-info">
+                            <img src="${item.image}" alt="${item.name}">
+                            <div>
+                                <p>${item.name}</p>
+                                <small>Price: $${item.price.toFixed(2)}</small>
+                                <br>
+                                <a href="#" class="remove-item" data-name="${item.name}">Remove</a>
+                            </div>
+                        </div>
+                    </td>
+                    <td><input type="number" value="${item.quantity}" class="quantity-input"></td>
+                    <td>$${subtotal.toFixed(2)}</td>
+                    <td><button class="update-cart">Update</button></td>
+                </tr>
+            `;
+            cartTableBody.innerHTML += row;
+        });
+
+        // Show or hide the payment button based on cart items
+        const paymentButton = document.getElementById("payment-button");
+        if (cartItems.length > 0) {
+            paymentButton.style.display = "block";
+        } else {
+            paymentButton.style.display = "none";
+        }
+
+        // Update total price
+        updateTotalPrice();
+    }
+
+    // Function to update total price
+    function updateTotalPrice() {
+        const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+        const subtotal = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
+        const tax = subtotal * 0.1; // Assuming 10% tax rate
+        const total = subtotal + tax;
+        document.querySelector(".subtotal").textContent = `$${subtotal.toFixed(2)}`;
+        document.querySelector(".tax").textContent = `$${tax.toFixed(2)}`;
+        document.querySelector(".total").textContent = `$${total.toFixed(2)}`;
+    }
+
+    // Event delegation for "Remove" buttons
+    document.addEventListener("click", function (event) {
+        if (event.target.classList.contains("remove-item")) {
+            const itemName = event.target.dataset.name;
+            removeItemFromCart(itemName);
+        }
+    });
+
+    // Function to remove item from cart
+    function removeItemFromCart(name) {
+        let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+        cartItems = cartItems.filter((item) => item.name !== name);
+        localStorage.setItem("cartItems", JSON.stringify(cartItems));
+        loadCartItems();
+        updateCartIcon();
+    }
+
+    // Function to update cart icon with total items count
+    function updateCartIcon() {
+        const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+        const cartCount = cartItems.reduce((total, item) => total + item.quantity, 0);
+        document.querySelector(".cart-count").textContent = cartCount;
+    }
+
+    // Function to navigate to the payment page
+    window.goToPaymentPage = function () {
+        window.location.href = "payment.html";
+    };
+});
+    </script>
+  </body>
+</html>
